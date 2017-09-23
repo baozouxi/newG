@@ -17,6 +17,7 @@ class AddColumnsToUsers extends Migration
             $table->string('weixin')->nullable();
             $table->tinyInteger('active')->default('1');
             $table->string('phone');
+            $table->string('qq')->nullable();
             $table->integer('sort')->default(0)->comment('排序');
             $table->integer('group_id')->comment('用户组id');
         });
