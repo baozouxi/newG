@@ -25,15 +25,17 @@ class CreateAppointmentsTable extends Migration
             $table->integer('doctor_id')->unsigned()->nullable();
             $table->integer('way_id')->unsigned()->comment('来源途径');
             $table->dateTime('book_date')->comment('预约时间');
-            $table->integer('app_num')->comment('预约号');
+            $table->string('app_num')->comment('预约号');
             $table->string('address')->nullable()->comment('详细地址');
             $table->string('phone', '13');
             $table->string('qq')->nullable();
+            $table->string('job')->nullable();
             $table->string('weixin')->nullable();
             $table->string('content')->comment('备注');
             $table->tinyInteger('province');
             $table->tinyInteger('city');
             $table->tinyInteger('town');
+            $table->tinyInteger('status')->default('0');
         });
     }
 

@@ -81,7 +81,7 @@
                                                                                  style="display: none;">0</font><span
                             class="icon">Ĵ</span>预约管理</a></p>
             <ol id="bar_1">
-                <li><a url="track.asp?s=1" href="javascript:void(0);" hidefocus=""
+                <li><a url="{{ route('appointment-tracks.index') }}" href="javascript:void(0);" hidefocus=""
                        onclick="getChange(this,1);fastH(this,'main');"><font id="now_track"
                                                                              style="display: none;">0</font><span
                                 class="icon">į</span>回访记录</a></li>
@@ -130,7 +130,7 @@
                onclick="getChange(this);fastH(this,'main');"><span class="icon">Ĉ</span>病种管理</a></li>
         <li><a url="{{ route('doctors.index') }}" href="javascript:void(0);" hidefocus=""
                onclick="getChange(this);fastH(this,'main');"><span class="icon">ō</span>医生管理</a></li>
-        <li><a url="way.asp?s=1" href="javascript:void(0);" hidefocus=""
+        <li><a url="{{ route('ways.index') }}" href="javascript:void(0);" hidefocus=""
                onclick="getChange(this);fastH(this,'main');"><span class="icon">Ń</span>途径管理</a></li>
         <li><a url="ads.asp?s=1" href="javascript:void(0);" hidefocus=""
                onclick="getChange(this);fastH(this,'main');"><span class="icon">ě</span>媒介管理</a></li>

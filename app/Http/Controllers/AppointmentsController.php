@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AppointRequest;
+use App\Models\Appointment;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AppointmentsController extends Controller
 {
@@ -13,7 +17,11 @@ class AppointmentsController extends Controller
      */
     public function index()
     {
-        return view('appointment.index');
+        $appointments = new Appointment;
+
+        $appointments = $appointments->with('tracks')->get();
+
+        return view('appointment.index', compact('appointments'));
     }
 
     /**
@@ -32,9 +40,21 @@ class AppointmentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AppointRequest $request)
     {
-        dd($request->all());
+
+        $app_num = Carbon::now()->format('YmdHisu');
+
+        $request['hospital_id'] = session('hospital.id');
+        $request['user_id']     = Auth::id();
+        $request['app_num']     = $app_num;
+        $request['book_date']   = Carbon::parse($request->book_date)->format('Y-m-d H:i:s');
+
+        if (Appointment::create($request->all())) {
+            return code('0', route('appointments.index'));
+        }
+
+        return code('1', '添加失败，请稍后重试');
     }
 
     /**

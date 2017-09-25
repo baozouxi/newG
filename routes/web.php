@@ -31,12 +31,15 @@ Route::Resource('patients', 'PatientsController');
 Route::Resource('illnesses', 'IllnessesController');
 
 
+Route::get('/appointment/{appointment}/tracks', 'AppointmentTracksController@withInfo')->name('appTracksWithInfo');
 Route::Resource('appointments', 'AppointmentsController');
+Route::Resource('appointment-tracks', 'AppointmentTracksController');
+
+
 
 
 Route::get('/patients/{patient}/tracks', 'PatientTracksController@withPatientInfo')->name('trackWithPatientInfo');
 Route::Resource('patient-tracks', 'PatientTracksController');
-
 
 
 Route::get('/patients/{patient}/expenses', 'ExpensesController@withPatientInfo')->name('expenseWithPatientInfo');
@@ -50,6 +53,10 @@ Route::get('/patient-report', 'PatientReportController')->name('patient-report')
 Route::get('/patient-statistics', 'patientStatisticsController')->name('patient-sta');
 
 Route::Resource('doctors', 'DoctorsController');
+
+
+Route::Resource('ways', 'WaysController');
+
 
 
 Route::get('/logout', function () {

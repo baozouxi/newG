@@ -2,7 +2,7 @@
 
 
 @push('guide')
-    <li>患者管理</li>
+    <li>预约管理</li>
 @endpush
 
 
@@ -149,23 +149,34 @@
             </tr>
             </thead>
             <tbody id="tablebg">
-            <tr class="t1">
+            @foreach($appointments as $appointment)
+                <tr>
                 <td>
-                    <center>2</center>
+                    <center>{{ $appointment->id }}</center>
                 </td>
                 <td>
-                    <center>2017-09-23 17:01</center>
+                    <center>{{ $appointment->created_at->format('Y-m-d H:i') }}</center>
                 </td>
                 <td>
-                    <center>1001</center>
+                    <center>{{ $appointment->app_num }}</center>
                 </td>
                 <td>
-                    <center><u class="icon">ű 未到诊</u></center>
+                    <center>
+                        @if($appointment->status == \App\Http\CommonRuleInterface::WAITING )
+                            <u class="icon">ű 未到诊</u>
+                        @elseif($appointment->status == \App\Http\CommonRuleInterface::HOSPITALD)
+                            <i class="icon">ű 已到诊</i>
+                        @else
+                            <em class="icon">ű 已失效</em>
+                        @endif
+
+
+                    </center>
                 </td>
                 <td><span title="“现在擦”的详细资料" onclick="msgbox(this,600);" url="res.asp?act=show&amp;id=2"
                           style="cursor:pointer;" class="icon">Ĵ</span> <a href="javascript:void(0);"
                                                                            onclick="fastH(this,'main')"
-                                                                           url="res.asp?act=add&amp;s=1&amp;id=2&amp;m=res"><u>现在擦</u></a>
+                                                                           url="res.asp?act=add&amp;s=1&amp;id=2&amp;m=res"><u>{{ $appointment->name }}</u></a>
                 </td>
                 <td>
                     <center class="file">
@@ -173,22 +184,22 @@
                     </center>
                 </td>
                 <td>
-                    <center><u>男</u></center>
+                    <center><u>{{ $appointment->gender == \App\Http\CommonRuleInterface::MALE ? '男': '女' }}</u></center>
                 </td>
                 <td>
-                    <center>13</center>
+                    <center>{{ $appointment->age }}</center>
                 </td>
                 <td>
-                    <center>132****5551</center>
+                    <center>{{ $appointment->phone }}</center>
                 </td>
                 <td>
-                    <center><span>-</span></center>
+                    <center><span>{{ $appointment->qq ?: '-' }}</span></center>
                 </td>
                 <td>
-                    <center><span>-</span></center>
+                    <center><span>{{ $appointment->weixin ?: '-' }}</span></center>
                 </td>
                 <td>
-                    <center>北京市西城区</center>
+                    <center>{{ area($appointment->province, $appointment->city,$appointment->town)['city'] }}{{ area($appointment->province, $appointment->city,$appointment->town)['town'] }}</center>
                 </td>
                 <td>
                     <center>肾病</center>
@@ -212,16 +223,24 @@
                     <center>0</center>
                 </td>
                 <td>
-                    <center>10-18 17:00</center>
+                    <center>{{ $appointment->book_date->format('m-d H:i') }}</center>
                 </td>
                 <td>
                     <center>0</center>
                 </td>
                 <td>
-                    <center><span><span>没有记录</span></span></center>
+                    <center><a href="javascript:void(0);" onclick="fastH(this,'main')"
+                               url="{{ route('appTracksWithInfo', ['$appointment'=>$appointment->id]) }}">
+                            @if($appointment->tracks->isEmpty())
+                                <span>没有记录</span>
+                            @else
+                                <i>{{ $appointment->tracks->max('next')->format('m-d H:i') }}({{ $appointment->tracks->count() }})</i>
+                            @endif
+
+                        </a></center>
                 </td>
                 <td>
-                    <center>医嘱</center>
+                    <center>{{ $appointment->user->name }}</center>
                 </td>
                 <td>
                     <center><a href="javascript:void(0);" id="del2"
@@ -229,86 +248,7 @@
                                     class="icon"><em>ź</em></span></a></center>
                 </td>
             </tr>
-            <tr class="t2">
-                <td>
-                    <center>1</center>
-                </td>
-                <td>
-                    <center>2017-09-19 14:43</center>
-                </td>
-                <td>
-                    <center>1000</center>
-                </td>
-                <td>
-                    <center><i class="icon">Ű 已到诊</i></center>
-                </td>
-                <td><span title="“阿萨”的详细资料" onclick="msgbox(this,600);" url="res.asp?act=show&amp;id=1"
-                          style="cursor:pointer;" class="icon">Ĵ</span> <a href="javascript:void(0);"
-                                                                           onclick="fastH(this,'main')"
-                                                                           url="res.asp?act=add&amp;s=1&amp;id=1&amp;m=res"><i>阿萨</i></a>
-                </td>
-                <td>
-                    <center class="file">
-                        <center><span>-</span></center>
-                    </center>
-                </td>
-                <td>
-                    <center><u>男</u></center>
-                </td>
-                <td>
-                    <center>13</center>
-                </td>
-                <td>
-                    <center>13228595558</center>
-                </td>
-                <td>
-                    <center><span>-</span></center>
-                </td>
-                <td>
-                    <center><span>-</span></center>
-                </td>
-                <td>
-                    <center>北京市西城区</center>
-                </td>
-                <td>
-                    <center>肾病</center>
-                </td>
-                <td>
-                    <center>肾病综合征</center>
-                </td>
-                <td>
-                    <center><em>*</em>赵中献</center>
-                </td>
-                <td>
-                    <center>PC商务通</center>
-                </td>
-                <td>
-                    <center><span>-</span></center>
-                </td>
-                <td>
-                    <center>0</center>
-                </td>
-                <td>
-                    <center>0</center>
-                </td>
-                <td>
-                    <center><i>09-19 14:44</i></center>
-                </td>
-                <td>
-                    <center>0</center>
-                </td>
-                <td>
-                    <center><span><span>没有记录</span></span></center>
-                </td>
-                <td>
-                    <center>医嘱(<i>陈国营</i>)</center>
-                </td>
-                <td>
-                    <center><a href="javascript:void(0);" id="del1"
-                               onclick="if(confirm('确定删除吗？\n\n该操作不可恢复')){fast('res.asp?act=del&amp;id=1','del1');}"><span
-                                    class="icon"><em>ź</em></span></a></center>
-                </td>
-            </tr>
+            @endforeach
             <tr class="t1">
                 <td colspan="24">&nbsp;&nbsp;记录:<i>2</i>条</td>
             </tr>
