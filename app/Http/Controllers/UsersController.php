@@ -29,7 +29,7 @@ class UsersController extends Controller
 
     public function create()
     {
-        $hospitals = Hospital::active()->pluck('name', 'id')->all(['name', 'id']);
+        $hospitals = Hospital::pluck('name', 'id')->all(['name', 'id']);
         $roles     = Role::active()->pluck('name', 'id')->all(['name', 'id']);
 
         return view('user.create', compact('hospitals', 'roles'));

@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Faker\Provider\DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class PatientsController extends Controller
 {
@@ -25,37 +26,43 @@ class PatientsController extends Controller
     public function index(Request $request)
     {
 
-        $patients = new Patient;
 
-        //根据日期筛选
-        if ($request->has('created_at')) {
-            $patients = $patients->whereDate('created_at', date('Y-m-d', strtotime($request->created_at)));
-        }
+        $patients = Cache::remember('patients', '1000', function () use ($request) {
+            $patients = new Patient;
 
-        //到期回访
-        if ($request->has('status')) {
-            switch ($request->status) {
-                case self::TIME_TO_TRACK:
-                    $patients = $patients->whereHas('tracks', function ($query) {
-                        $query->whereDate('next', Carbon::now()->format('Y-m-d'));
-                    });
-
-                    break;
-
-                case self::NEED_TRACK:
-
-                    break;
+            //根据日期筛选
+            if ($request->has('created_at')) {
+                $patients = $patients->whereDate('created_at', date('Y-m-d', strtotime($request->created_at)));
             }
-        }
 
+            //到期回访
+            if ($request->has('status')) {
+                switch ($request->status) {
+                    case self::TIME_TO_TRACK:
+                        $patients = $patients->whereHas('tracks', function ($query) {
+                            $query->whereDate('next', Carbon::now()->format('Y-m-d'));
+                        });
 
-        $patients = $patients->with([
-            'user',
-            'illness',
-            'tracks' => function ($query) {
-                $query->orderBy('next', 'desc');
+                        break;
+
+                    case self::NEED_TRACK:
+
+                        break;
+                }
             }
-        ])->paginate(20);
+
+
+            return $patients = $patients->with([
+                'user',
+                'illness',
+                'tracks' => function ($query) {
+                    $query->orderBy('next', 'desc');
+                }
+            ])->paginate(20);
+
+        });
+
+
 
 
         return view('patient.index', compact('patients'));

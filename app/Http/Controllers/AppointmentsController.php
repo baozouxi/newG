@@ -4,12 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AppointRequest;
 use App\Models\Appointment;
+use App\Models\Doctor;
+use App\Models\Illness;
+use App\Models\Ways;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class AppointmentsController extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware('checkDependence');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,9 +28,14 @@ class AppointmentsController extends Controller
      */
     public function index()
     {
-        $appointments = new Appointment;
 
-        $appointments = $appointments->with('tracks')->get();
+        $appointments = Cache::remember('appointments', '1000', function(){
+            $appointments = new Appointment;
+
+            return  $appointments->with('tracks')->get();
+
+        });
+
 
         return view('appointment.index', compact('appointments'));
     }
@@ -31,7 +47,11 @@ class AppointmentsController extends Controller
      */
     public function create()
     {
-        return view('appointment.create');
+        $doctors   = Doctor::all();
+        $illnesses = Illness::all();
+        $ways      = Ways::all();
+
+        return view('appointment.create', compact('doctors', 'illnesses', 'ways'));
     }
 
     /**

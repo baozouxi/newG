@@ -66,46 +66,28 @@
                         }</script>
                     <input type="hidden" name="illness_id" id="illness_id" value=""><label
                             class="inline">病种分类：</label><select
-                            class="select" name="dis" id="dis" style="width:205px;">
-                        <option value="8">肾病综合征</option>
-                        <option value="9">肌酐</option>
-                        <option value="11">慢性肾炎</option>
-                        <option value="13">急性肾炎</option>
-                        <option value="14">IgA肾病</option>
-                        <option value="15">紫癜性肾炎</option>
-                        <option value="16">狼疮性肾炎</option>
-                        <option value="17">肾囊肿</option>
-                        <option value="18">多囊肾</option>
-                        <option value="19">肾检</option>
-                        <option value="20">糖尿病肾病</option>
-                        <option value="21">高血压肾病</option>
-                        <option value="22">肾盂肾炎</option>
-                        <option value="23">肾结石/肾积水</option>
-                        <option value="24">肾萎缩</option>
-                        <option value="25">尿蛋白/潜血</option>
-                        <option value="26">肾功能不全</option>
-                        <option value="27">肾衰竭</option>
-                        <option value="28">尿毒症-已透析</option>
-                        <option value="38">膜性肾炎</option>
+                            class="select" name="illness_id" id="illness_id" style="width:205px;">
+                        <option value="0">请选择</option>
+                        @foreach($illnesses as $illness)
+                            <option value="{{ $illness->id }}">{{ $illness->name }}</option>
+                        @endforeach
                     </select><label class="inline">预约医生：<span>按实际选择，如无则不选</span></label><select class="select"
                                                                                                 name="doctor_id"
                                                                                                 id="doctor_id"
                                                                                                 style="width:205px;">
+
                         <option value="0">请选择</option>
-                        <option value="6">赵中献</option>
-                        <option value="7">黄小松</option>
-                        <option value="8">杨惠标</option>
-                        <option value="10">王奎</option>
-                        <option value="11">张建儒</option>
+                        @foreach($doctors as $doctor)
+                            <option value="{{ $doctor->id }}">{{ $doctor->name }}</option>
+                        @endforeach
                     </select><label
                             class="inline">来源途径：</label><select class="select" name="way_id" id="way_id"
                                                                 style="width:205px;">
-                        <option value="6">PC商务通</option>
-                        <option value="7">手机商务通</option>
-                        <option value="8">网站电话</option>
-                        <option value="23">糯米电话</option>
-                        <option value="32">微信</option>
-                        <option value="33">抓取电话</option>
+                        <option value="0">请选择</option>
+                        @foreach($ways as $way)
+                            <option value="{{ $way->id }}">{{ $way->name }}</option>
+                        @endforeach
+
                     </select><label class="inline"><em>*</em>预约时间：<span>如不确定，在随诊前面打勾</span></label><input
                             type="text" name="book_date" id="book_date" class="Wdate" value="" style="width:193px;"
                             autocomplete="off" disableautocomplete="" onblur="this.style.backgroundColor='#fff';"

@@ -49,8 +49,7 @@
                                                                                                         onclick="getChange(0);fastH(this,'main');"><span
                         class="icon">Ķ</span></a><a class="site" href="javascript:void(0);" hidefocus=""
                                                     url="bind.asp?s=1" onclick="getChange(0);fastH(this,'main');"><span
-                        class="icon">ŧ</span></a><a class="exit" href="javascript:void(0);" hidefocus=""
-                                                    url="index.asp?act=exit" onclick="getChange(0);fastH(this,'main');"><span
+                        class="icon">ŧ</span></a><a class="exit" href="{{ route('logout') }}"><span
                         class="icon">ş</span></a></p></div>
 </div><!--左边-->
 <div id="sidebar" class="sidebar" style="background-image: url(&quot;http://cdn.ehis.cc/2.3/weather/9.png&quot;);">
@@ -85,45 +84,43 @@
                        onclick="getChange(this,1);fastH(this,'main');"><font id="now_track"
                                                                              style="display: none;">0</font><span
                                 class="icon">į</span>回访记录</a></li>
-                <li><a url="stat_rep_res.asp?s=1&amp;to=m" href="javascript:void(0);" hidefocus=""
+                <li><a url="{{ route('app-rep') }}" href="javascript:void(0);" hidefocus=""
                        onclick="getChange(this,1);fastH(this,'main');"><span class="icon">Ő</span>预约报表</a></li>
-                <li><a url="stat_res.asp?s=1&amp;to=m" href="javascript:void(0);" hidefocus=""
-                       onclick="getChange(this,1);fastH(this,'main');"><span class="icon">ŏ</span>预约统计</a></li>
             </ol>
         </li>
-        <li><a id="a_cons" url="cons.asp?s=1" href="javascript:void(0);" hidefocus=""
-               onclick="getChange(this);fastH(this,'main');"><font id="now_cons" style="display: none;">0</font><span
-                        class="icon">Ĳ</span>咨询记录</a></li>
-        <li><a id="a_tel" url="tel.asp?s=1" href="javascript:void(0);" hidefocus=""
-               onclick="getChange(this);fastH(this,'main');"><font id="now_tel" style="display: none;">0</font><span
-                        class="icon">ĕ</span>电话记录</a></li>
-        <li><a id="a_call" url="call.asp?s=1" href="javascript:void(0);" hidefocus=""
-               onclick="getChange(this);fastH(this,'main');"><font id="now_call" style="display: none;">0</font><span
-                        class="icon">Ĕ</span>回拨记录</a></li>
-        <li><p><a url="dia.asp?s=1" href="javascript:void(0);" hidefocus=""
-                  onclick="getChange(this);fastH(this,'main');sidebar(2);"><span class="icon">İ</span>对话管理</a></p>
-            <ol id="bar_2">
-                <li><a url="stat_rep_dia.asp?s=1&amp;to=m" href="javascript:void(0);" hidefocus=""
-                       onclick="getChange(this,1);fastH(this,'main');"><span class="icon">Ő</span>对话报表</a></li>
-                <li><a url="stat_dia.asp?s=1&amp;to=m" href="javascript:void(0);" hidefocus=""
-                       onclick="getChange(this,1);fastH(this,'main');"><span class="icon">ŏ</span>对话统计</a></li>
-            </ol>
-        </li>
-        <li><p><a url="rank.asp?s=1" href="javascript:void(0);" hidefocus=""
-                  onclick="getChange(this);fastH(this,'main');sidebar(3);"><span class="icon">ő</span>竞价管理</a></p>
-            <ol id="bar_3">
-                <li><a url="stat_rep_rank.asp?s=1&amp;to=m" href="javascript:void(0);" hidefocus=""
-                       onclick="getChange(this,1);fastH(this,'main');"><span class="icon">Ő</span>竞价报表</a></li>
-                <li><a url="stat_rank.asp?s=1&amp;to=m" href="javascript:void(0);" hidefocus=""
-                       onclick="getChange(this,1);fastH(this,'main');"><span class="icon">ŏ</span>竞价统计</a></li>
-            </ol>
-        </li>
-        <li><a url="sms.asp?s=1" href="javascript:void(0);" hidefocus=""
-               onclick="getChange(this);fastH(this,'main');"><span class="icon">ė</span>短信记录</a></li>
-        <li><a url="file.asp?s=1" href="javascript:void(0);" hidefocus="" onclick="getChange(this);fastH(this,'main');"><span
-                        class="icon">ū</span>上传记录</a></li>
-        <li><a url="log.asp?s=1" href="javascript:void(0);" hidefocus=""
-               onclick="getChange(this);fastH(this,'main');"><span class="icon">Š</span>操作记录</a></li>
+        {{--<li><a id="a_cons" url="cons.asp?s=1" href="javascript:void(0);" hidefocus=""--}}
+        {{--onclick="getChange(this);fastH(this,'main');"><font id="now_cons" style="display: none;">0</font><span--}}
+        {{--class="icon">Ĳ</span>咨询记录</a></li>--}}
+        {{--<li><a id="a_tel" url="tel.asp?s=1" href="javascript:void(0);" hidefocus=""--}}
+        {{--onclick="getChange(this);fastH(this,'main');"><font id="now_tel" style="display: none;">0</font><span--}}
+        {{--class="icon">ĕ</span>电话记录</a></li>--}}
+        {{--<li><a id="a_call" url="call.asp?s=1" href="javascript:void(0);" hidefocus=""--}}
+        {{--onclick="getChange(this);fastH(this,'main');"><font id="now_call" style="display: none;">0</font><span--}}
+        {{--class="icon">Ĕ</span>回拨记录</a></li>--}}
+        {{--<li><p><a url="dia.asp?s=1" href="javascript:void(0);" hidefocus=""--}}
+        {{--onclick="getChange(this);fastH(this,'main');sidebar(2);"><span class="icon">İ</span>对话管理</a></p>--}}
+        {{--<ol id="bar_2">--}}
+        {{--<li><a url="stat_rep_dia.asp?s=1&amp;to=m" href="javascript:void(0);" hidefocus=""--}}
+        {{--onclick="getChange(this,1);fastH(this,'main');"><span class="icon">Ő</span>对话报表</a></li>--}}
+        {{--<li><a url="stat_dia.asp?s=1&amp;to=m" href="javascript:void(0);" hidefocus=""--}}
+        {{--onclick="getChange(this,1);fastH(this,'main');"><span class="icon">ŏ</span>对话统计</a></li>--}}
+        {{--</ol>--}}
+        {{--</li>--}}
+        {{--<li><p><a url="rank.asp?s=1" href="javascript:void(0);" hidefocus=""--}}
+        {{--onclick="getChange(this);fastH(this,'main');sidebar(3);"><span class="icon">ő</span>竞价管理</a></p>--}}
+        {{--<ol id="bar_3">--}}
+        {{--<li><a url="stat_rep_rank.asp?s=1&amp;to=m" href="javascript:void(0);" hidefocus=""--}}
+        {{--onclick="getChange(this,1);fastH(this,'main');"><span class="icon">Ő</span>竞价报表</a></li>--}}
+        {{--<li><a url="stat_rank.asp?s=1&amp;to=m" href="javascript:void(0);" hidefocus=""--}}
+        {{--onclick="getChange(this,1);fastH(this,'main');"><span class="icon">ŏ</span>竞价统计</a></li>--}}
+        {{--</ol>--}}
+        {{--</li>--}}
+        {{--<li><a url="sms.asp?s=1" href="javascript:void(0);" hidefocus=""--}}
+        {{--onclick="getChange(this);fastH(this,'main');"><span class="icon">ė</span>短信记录</a></li>--}}
+        {{--<li><a url="file.asp?s=1" href="javascript:void(0);" hidefocus="" onclick="getChange(this);fastH(this,'main');"><span--}}
+        {{--class="icon">ū</span>上传记录</a></li>--}}
+        {{--<li><a url="log.asp?s=1" href="javascript:void(0);" hidefocus=""--}}
+        {{--onclick="getChange(this);fastH(this,'main');"><span class="icon">Š</span>操作记录</a></li>--}}
     </ul>
     <ul id="nav_1">
         <li><a url="{{ route('illnesses.index') }}" href="javascript:void(0);" hidefocus=""
@@ -169,23 +166,23 @@
                                           url="main.asp?act=think"><span class="icon">Ň</span>设置</a></p></div>
             <div id="box" class="box">
                 <div class="user_main">
-                    <div class="user_take right"><p></p>
-                        <center>—— 竞价成本 ——</center>
-                        <p></p>
-                        <p>竞价消费：0 元</p>
-                        <p></p>
-                        <p>预约成本：0 元</p>
-                        <p></p>
-                        <p>到诊成本：0 元</p>
-                        <p></p></div>
-                    <div class="user_all right"><p></p>
-                        <center>—— 全体业绩 ——</center>
-                        <p></p>
-                        <p>预约：0 人</p>
-                        <p></p>
-                        <p>到诊：0 人</p>
-                        <p></p>
-                        <p>转换：0</p></div>
+                    {{--<div class="user_take right"><p></p>--}}
+                        {{--<center>—— 竞价成本 ——</center>--}}
+                        {{--<p></p>--}}
+                        {{--<p>竞价消费：0 元</p>--}}
+                        {{--<p></p>--}}
+                        {{--<p>预约成本：0 元</p>--}}
+                        {{--<p></p>--}}
+                        {{--<p>到诊成本：0 元</p>--}}
+                        {{--<p></p></div>--}}
+                    {{--<div class="user_all right"><p></p>--}}
+                        {{--<center>—— 全体业绩 ——</center>--}}
+                        {{--<p></p>--}}
+                        {{--<p>预约：0 人</p>--}}
+                        {{--<p></p>--}}
+                        {{--<p>到诊：0 人</p>--}}
+                        {{--<p></p>--}}
+                        {{--<p>转换：0</p></div>--}}
                     <div class="user_info">
                         <div class="user_face left"><img src="http://api.ehis.cc/2.2/qq7424420.jpg" title="超级管理员"></div>
                         <p>你好，医患通</p>
@@ -195,127 +192,128 @@
                                                                          onclick="local('118.116.85.214');"
                                                                          title="电脑端:118.116.85.214"><em id="call_local">四川省成都市双流区电信</em></a>登陆成功
                         </p>
-                        <p>
-                            <script>local('118.116.85.214');</script>
-                        </p>
-                        <p>今日任务：预约回访<a class="red" href="javascript:void(0);" onclick="$('a_res').click();">21</a>条，需要跟踪<a
-                                    class="red" href="javascript:void(0);" onclick="$('a_res').click();">0</a>条，咨询回访<a
-                                    class="red" href="javascript:void(0);" onclick="$('a_cons').click();">0</a>条，电话回访<a
-                                    class="red" href="javascript:void(0);" onclick="$('a_tel').click();">0</a>条</p>
-                        <p></p></div>
-                </div>
-                <div class="top_main" style="overflow:hidden;">
-                    <div class="left" style="width:33.3%;">
-                        <div class="top_title"><h3><span class="icon">İ</span>对话排行</h3></div>
-                        <ul></ul>
-                    </div>
-                    <div class="left" style="width:33.3%;">
-                        <div class="top_title"><h3><span class="icon">Ĵ</span>预约排行</h3></div>
-                        <ul></ul>
-                    </div>
-                    <div class="right" style="width:33.3%;">
-                        <div class="top_title" style="margin-right:0;"><h3><span class="icon">Ķ</span>到诊排行</h3></div>
-                        <ul style="margin-right:0;"></ul>
+                        {{--<p>--}}
+                            {{--<script>local('118.116.85.214');</script>--}}
+                        {{--</p>--}}
+                        {{--<p>今日任务：预约回访<a class="red" href="javascript:void(0);" onclick="$('a_res').click();">21</a>条，需要跟踪<a--}}
+                                    {{--class="red" href="javascript:void(0);" onclick="$('a_res').click();">0</a>条，咨询回访<a--}}
+                                    {{--class="red" href="javascript:void(0);" onclick="$('a_cons').click();">0</a>条，电话回访<a--}}
+                                    {{--class="red" href="javascript:void(0);" onclick="$('a_tel').click();">0</a>条</p>--}}
+                        {{--<p></p>--}}
                     </div>
                 </div>
-                <div class="top_main" style="margin:0;overflow:hidden;">
-                    <div class="left" style="width:33.3%;">
-                        <div class="top_title"><h3><span class="icon">Ĵ</span>预约今日</h3></div>
-                        <div class="list">
-                            <table cellspacing="1" cellpadding="0">
-                                <thead>
-                                <tr>
-                                    <th width="60">
-                                        <center>预约</center>
-                                    </th>
-                                    <th width="*">姓名</th>
-                                    <th width="120">
-                                        <center>病种</center>
-                                    </th>
-                                    <th width="80">
-                                        <center>时间</center>
-                                    </th>
-                                    <th width="80">
-                                        <center>录入</center>
-                                    </th>
-                                </tr>
-                                </thead>
-                                <tbody id="tablebg">
-                                <tr class="t1">
-                                    <td colspan="5">
-                                        <center>无记录</center>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                    <div class="left" style="width:33.3%;">
-                        <div class="top_title"><h3><span class="icon">Ĵ</span>今日预约</h3></div>
-                        <div class="list">
-                            <table cellspacing="1" cellpadding="0">
-                                <thead>
-                                <tr>
-                                    <th width="60">
-                                        <center>时间</center>
-                                    </th>
-                                    <th width="*">姓名</th>
-                                    <th width="120">
-                                        <center>途径</center>
-                                    </th>
-                                    <th width="80">
-                                        <center>预约</center>
-                                    </th>
-                                    <th width="80">
-                                        <center>录入</center>
-                                    </th>
-                                </tr>
-                                </thead>
-                                <tbody id="tablebg">
-                                <tr class="t1">
-                                    <td colspan="5">
-                                        <center>无记录</center>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                    <div class="right" style="width:33.3%;">
-                        <div class="top_title" style="margin-right:0;"><h3><span class="icon">Ķ</span>今日到诊</h3></div>
-                        <div class="list" style="margin-right:0;">
-                            <table cellspacing="1" cellpadding="0">
-                                <thead>
-                                <tr>
-                                    <th width="60">
-                                        <center>时间</center>
-                                    </th>
-                                    <th width="*">姓名</th>
-                                    <th width="120">
-                                        <center>病种</center>
-                                    </th>
-                                    <th width="80">
-                                        <center>医生</center>
-                                    </th>
-                                    <th width="80">
-                                        <center>录入</center>
-                                    </th>
-                                </tr>
-                                </thead>
-                                <tbody id="tablebg">
-                                <tr class="t1">
-                                    <td colspan="5">
-                                        <center>无记录</center>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
+                {{--<div class="top_main" style="overflow:hidden;">--}}
+                {{--<div class="left" style="width:33.3%;">--}}
+                {{--<div class="top_title"><h3><span class="icon">İ</span>对话排行</h3></div>--}}
+                {{--<ul></ul>--}}
+                {{--</div>--}}
+                {{--<div class="left" style="width:33.3%;">--}}
+                {{--<div class="top_title"><h3><span class="icon">Ĵ</span>预约排行</h3></div>--}}
+                {{--<ul></ul>--}}
+                {{--</div>--}}
+                {{--<div class="right" style="width:33.3%;">--}}
+                {{--<div class="top_title" style="margin-right:0;"><h3><span class="icon">Ķ</span>到诊排行</h3></div>--}}
+                {{--<ul style="margin-right:0;"></ul>--}}
+                {{--</div>--}}
+                {{--</div>--}}
+                {{--<div class="top_main" style="margin:0;overflow:hidden;">--}}
+                {{--<div class="left" style="width:33.3%;">--}}
+                {{--<div class="top_title"><h3><span class="icon">Ĵ</span>预约今日</h3></div>--}}
+                {{--<div class="list">--}}
+                {{--<table cellspacing="1" cellpadding="0">--}}
+                {{--<thead>--}}
+                {{--<tr>--}}
+                {{--<th width="60">--}}
+                {{--<center>预约</center>--}}
+                {{--</th>--}}
+                {{--<th width="*">姓名</th>--}}
+                {{--<th width="120">--}}
+                {{--<center>病种</center>--}}
+                {{--</th>--}}
+                {{--<th width="80">--}}
+                {{--<center>时间</center>--}}
+                {{--</th>--}}
+                {{--<th width="80">--}}
+                {{--<center>录入</center>--}}
+                {{--</th>--}}
+                {{--</tr>--}}
+                {{--</thead>--}}
+                {{--<tbody id="tablebg">--}}
+                {{--<tr class="t1">--}}
+                {{--<td colspan="5">--}}
+                {{--<center>无记录</center>--}}
+                {{--</td>--}}
+                {{--</tr>--}}
+                {{--</tbody>--}}
+                {{--</table>--}}
+                {{--<div class="clearfix"></div>--}}
+                {{--</div>--}}
+                {{--</div>--}}
+                {{--<div class="left" style="width:33.3%;">--}}
+                {{--<div class="top_title"><h3><span class="icon">Ĵ</span>今日预约</h3></div>--}}
+                {{--<div class="list">--}}
+                {{--<table cellspacing="1" cellpadding="0">--}}
+                {{--<thead>--}}
+                {{--<tr>--}}
+                {{--<th width="60">--}}
+                {{--<center>时间</center>--}}
+                {{--</th>--}}
+                {{--<th width="*">姓名</th>--}}
+                {{--<th width="120">--}}
+                {{--<center>途径</center>--}}
+                {{--</th>--}}
+                {{--<th width="80">--}}
+                {{--<center>预约</center>--}}
+                {{--</th>--}}
+                {{--<th width="80">--}}
+                {{--<center>录入</center>--}}
+                {{--</th>--}}
+                {{--</tr>--}}
+                {{--</thead>--}}
+                {{--<tbody id="tablebg">--}}
+                {{--<tr class="t1">--}}
+                {{--<td colspan="5">--}}
+                {{--<center>无记录</center>--}}
+                {{--</td>--}}
+                {{--</tr>--}}
+                {{--</tbody>--}}
+                {{--</table>--}}
+                {{--<div class="clearfix"></div>--}}
+                {{--</div>--}}
+                {{--</div>--}}
+                {{--<div class="right" style="width:33.3%;">--}}
+                {{--<div class="top_title" style="margin-right:0;"><h3><span class="icon">Ķ</span>今日到诊</h3></div>--}}
+                {{--<div class="list" style="margin-right:0;">--}}
+                {{--<table cellspacing="1" cellpadding="0">--}}
+                {{--<thead>--}}
+                {{--<tr>--}}
+                {{--<th width="60">--}}
+                {{--<center>时间</center>--}}
+                {{--</th>--}}
+                {{--<th width="*">姓名</th>--}}
+                {{--<th width="120">--}}
+                {{--<center>病种</center>--}}
+                {{--</th>--}}
+                {{--<th width="80">--}}
+                {{--<center>医生</center>--}}
+                {{--</th>--}}
+                {{--<th width="80">--}}
+                {{--<center>录入</center>--}}
+                {{--</th>--}}
+                {{--</tr>--}}
+                {{--</thead>--}}
+                {{--<tbody id="tablebg">--}}
+                {{--<tr class="t1">--}}
+                {{--<td colspan="5">--}}
+                {{--<center>无记录</center>--}}
+                {{--</td>--}}
+                {{--</tr>--}}
+                {{--</tbody>--}}
+                {{--</table>--}}
+                {{--<div class="clearfix"></div>--}}
+                {{--</div>--}}
+                {{--</div>--}}
+                {{--</div>--}}
                 <input type="hidden" name="this_url" id="this_url" value="/main.asp"></div>
         </div>
     </div>
@@ -327,21 +325,21 @@
         <span id="call_weather"><script>$('sidebar').style.backgroundImage = 'url("http://cdn.ehis.cc/2.3/weather/9.png")';</script><b>成都</b> 2017年09月13日 星期三 阴 09:05 温度：23℃，体感：22℃，湿度：86%，东北风2级，<b>舒适</b> ：建议着长袖T恤、衬衫加单裤等服装。年老体弱者宜着针织长袖衬衫、马甲和长裤。</span>
     </div>
 </div>
-<script>window.setTimeout("now_tip()", 100);
-    if (exist('call_local')) {
-        window.setTimeout("$('call_local').click()", 150);
-    }
-    if (exist('call_weather')) {
-        window.setTimeout("weather()", 200);
-    }
-    if (exist('call_track')) {
-        window.setTimeout("track()", 250);
-    }
-    if (exist('this_user')) {
-        To('user.asp?act=pass');
-    }</script>
-<script>if (exist('call_dbbak')) {
-        window.setTimeout("dbbak()", 100);
-    }</script>
+{{--<script>window.setTimeout("now_tip()", 100);--}}
+{{--if (exist('call_local')) {--}}
+{{--window.setTimeout("$('call_local').click()", 150);--}}
+{{--}--}}
+{{--if (exist('call_weather')) {--}}
+{{--window.setTimeout("weather()", 200);--}}
+{{--}--}}
+{{--if (exist('call_track')) {--}}
+{{--window.setTimeout("track()", 250);--}}
+{{--}--}}
+{{--if (exist('this_user')) {--}}
+{{--To('user.asp?act=pass');--}}
+{{--}</script>--}}
+{{--<script>if (exist('call_dbbak')) {--}}
+{{--window.setTimeout("dbbak()", 100);--}}
+{{--}</script>--}}
 </body>
 </html>

@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\Http\Traits\Date;
 use App\Scopes\HospitalScope;
 use Illuminate\Database\Eloquent\Model;
 
 class Appointment extends Model
 {
+    use Date;
     protected $fillable = [
         'name',
         'phone',
